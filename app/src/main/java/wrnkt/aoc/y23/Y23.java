@@ -15,6 +15,7 @@ public class Y23 {
 
     public Y23() {
         days.add(new One());
+        days.add(new Two());
     }
 
     public void run() {
