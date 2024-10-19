@@ -104,8 +104,7 @@ public class MainOne {
     String filePath = "../input/1.txt";
     Path path = Paths.get(filePath);
 
-    try {
-      BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
+    try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
       String line;
       while ((line = reader.readLine()) != null) {
         Integer c = getCalibrationValue(line);
