@@ -1,3 +1,5 @@
+package wrnkt.aoc.y21;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -60,7 +62,7 @@ class Pair<A, B> {
   }
 }
 
-public class DayThree {
+public class Three {
 
   public static String toBinaryString(FLBitSet bitSet) {
     if (bitSet == null) {

@@ -1,3 +1,5 @@
+package wrnkt.aoc.y23;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -18,7 +20,7 @@ enum Color {
 record GameInfo(int id, ArrayList<Map<Color, Integer>> handfuls) {
 }
 
-public class MainTwo {
+public class Two {
 
   public static final Pattern idPattern = Pattern.compile("Game (?<id>\\d+)");
   public static final Pattern numPattern = Pattern.compile("(\\d+)");

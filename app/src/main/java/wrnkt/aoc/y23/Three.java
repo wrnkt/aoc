@@ -1,3 +1,5 @@
+package wrnkt.aoc.y23;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -108,7 +110,7 @@ class Number {
   }
 }
 
-public class MainThree {
+public class Three {
 
   public static boolean isSymbol(Character c) {
     if (Character.isDigit(c) || c == '.') {

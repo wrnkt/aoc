@@ -1,3 +1,5 @@
+package wrnkt.aoc.y21;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -8,7 +10,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 
-public class DayOne {
+public class One {
 
   public static ArrayList<Integer> readInValues(String fName) {
     ArrayList<Integer> readings = new ArrayList<>();

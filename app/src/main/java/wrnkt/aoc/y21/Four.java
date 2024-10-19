@@ -1,3 +1,5 @@
+package wrnkt.aoc.y21;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -160,7 +162,7 @@ class Game {
   }
 }
 
-public class DayFour {
+public class Four {
 
   public static ArrayList<String> parseFile(String fName) {
     ArrayList<String> lines = new ArrayList<>();

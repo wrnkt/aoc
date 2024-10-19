@@ -1,3 +1,5 @@
+package wrnkt.aoc.y23;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -43,7 +45,7 @@ class Card {
   }
 }
 
-public class MainFour {
+public class Four {
   public static Card parseCard(final String in) {
     Card card = new Card();
 

@@ -1,3 +1,5 @@
+package wrnkt.aoc.y21;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -101,7 +103,7 @@ class Display {
 
 }
 
-public class DayTwo {
+public class Two {
 
     public static ArrayList<Step> readInFile(String fName) {
         ArrayList<Step> course = new ArrayList<>();
