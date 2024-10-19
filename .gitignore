@@ -4,6 +4,8 @@
 # Ignore Gradle build output directory
 build
 
-# Ignore build stuff
+# Ignore build stuff & artifacts
 .project
 .settings/
+**/*.class
+**/bin
