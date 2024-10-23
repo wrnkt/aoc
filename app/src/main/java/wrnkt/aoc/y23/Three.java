@@ -114,14 +114,6 @@ class Number {
 
 public class Three implements Day {
 
-    public int number() {
-        return 3;
-    }
-
-    public String desc() {
-        return "Cant remember desc";
-    }
-
     public static boolean isSymbol(Character c) {
         if (Character.isDigit(c) || c == '.') {
             return false;
@@ -196,15 +188,17 @@ public class Three implements Day {
     }
 
     public void run() {
-        String filePath = "../input/3.txt";
-        Path path = Paths.get(filePath);
+        try (BufferedReader br = getInputReader()) {
 
-        ArrayList<Number> nums = processFile(path);
+            ArrayList<Number> nums = processFile(Path.of(""));
 
-        Stream<Number> partNumbers = nums.stream().filter((n) -> n.isPartNumber());
+            Stream<Number> partNumbers = nums.stream().filter((n) -> n.isPartNumber());
 
-        Integer sum = partNumbers.mapToInt((pn) -> pn.getValue()).sum();
-        System.out.println(String.format("Sum: %d", sum));
+            Integer sum = partNumbers.mapToInt((pn) -> pn.getValue()).sum();
+            System.out.println(String.format("Sum: %d", sum));
 
+        } catch (Exception e) {
+            System.out.println("[ERROR]: Failed to load input data.");
+        }
     }
 }

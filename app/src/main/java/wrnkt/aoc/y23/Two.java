@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -28,12 +29,8 @@ record GameInfo(int id, ArrayList<Map<Color, Integer>> handfuls) {
 
 public class Two implements Day {
 
-    public int number() {
-        return 2;
-    }
-
-    public String desc() {
-        return "Cant remember desc";
+    public Optional<String> desc() {
+        return Optional.of("Cant remember desc");
     }
 
     public static final Pattern idPattern = Pattern.compile("Game (?<id>\\d+)");
@@ -194,15 +191,16 @@ public class Two implements Day {
     }
 
     public void run() {
-        final String fName = "2023/2.txt";
-        InputStream is = getClass().getClassLoader().getResourceAsStream(fName);
+        try {
+            BufferedReader reader = getInputReader();
+            ArrayList<GameInfo> games = loadGamesFromReader(reader);
 
-        ArrayList<GameInfo> games = loadGamesFromReader(
-            new BufferedReader(new InputStreamReader(is))
-        );
+            partOne(games);
+            partTwo(games);
+        } catch (Exception e) {
+            System.out.println("[ERROR]: could not get reader for input.");
+        }
 
-        partOne(games);
-        partTwo(games);
     }
 
 }

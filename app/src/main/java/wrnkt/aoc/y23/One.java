@@ -1,30 +1,18 @@
 package wrnkt.aoc.y23;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
+import java.util.Optional;
 
 import wrnkt.aoc.util.Day;
-import wrnkt.aoc.util.Procedure;
 
 public class One implements Day {
 
-    public int number() {
-        return 1;
-    }
-    
-    public String desc() {
-        return "Something about snow or something...";
+    public Optional<String> desc() {
+        return Optional.of("Something about snow or something...");
     }
 
     private static final int BASE = 10;
@@ -114,25 +102,19 @@ public class One implements Day {
         return Integer.parseInt(String.format("%s%s", first, last));
     }
 
-    private void readAndProcess(Consumer<BufferedReader> br, Procedure onFailure) {
-    }
-
     public void run() {
-        final String fName = "2023/1.txt";
-
         ArrayList<Integer> calValues = new ArrayList<>();
 
-        InputStream is = getClass().getClassLoader().getResourceAsStream(fName);
-
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
+        try (BufferedReader reader = getInputReader()) {
             String line;
             while ((line = reader.readLine()) != null) {
                 Integer c = getCalibrationValue(line);
-                System.out.println(String.format("%s -> %s", line, c.toString()));
+                System.out.println(String.format("%s -> %d", line, c));
                 calValues.add(c);
             }
-        } catch (IOException e) {
-            System.out.println(String.format("Failed to read file: %s.", fName));
+        } catch (Exception e) {
+            System.out.println("Failed to run this challenge.");
+            System.out.println(String.format("%s", inputFileName()));
             e.printStackTrace(System.out);
         }
         int total = calValues.stream()
