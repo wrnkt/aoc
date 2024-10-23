@@ -4,6 +4,7 @@
 [versions]
 guava = "33.2.1-jre"
 junit-jupiter = "5.10.3"
+junit-platform-launcher = "1.11.2"
 
 slf4j-api = "2.0.16"
 logback-classic = "1.5.11"
@@ -11,6 +12,7 @@ logback-classic = "1.5.11"
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher" }
 
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j-api" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback-classic" }
