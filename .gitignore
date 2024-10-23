@@ -9,3 +9,6 @@ build
 .settings/
 **/*.class
 **/bin
+
+**/kls_database.db
+
