@@ -37,7 +37,6 @@ public class AutoChallengeRunner {
 
     public AutoChallengeRunner(Map<Integer,Set<Integer>> puzzleList) {
         setPuzzleList(puzzleList);
-        loadDays();
     }
 
 
@@ -181,7 +180,7 @@ public class AutoChallengeRunner {
 
     private void setPuzzleList(Map<Integer, Set<Integer>> puzzleList) {
         this.puzzleList = puzzleList;
-        // loadDays();
+        loadDays();
     }
 
     public Set<Class<? extends Day>> getLoadedDays() {
