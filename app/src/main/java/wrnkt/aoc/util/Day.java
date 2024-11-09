@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.util.Optional;
 
 public interface Day extends Runnable {
+
     public static final Logger log = LoggerFactory.getLogger(Day.class);
 
     public default Optional<String> desc() {
