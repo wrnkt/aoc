@@ -1,4 +1,4 @@
-package wrnkt.aoc.y23;
+package wrnkt.aoc.year.y23;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,8 +15,6 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
-
-import org.checkerframework.common.reflection.qual.GetClass;
 
 import wrnkt.aoc.util.Day;
 

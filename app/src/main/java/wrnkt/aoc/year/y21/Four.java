@@ -1,4 +1,4 @@
-package wrnkt.aoc.y21;
+package wrnkt.aoc.year.y21;
 
 import java.io.BufferedReader;
 import java.io.IOException;
