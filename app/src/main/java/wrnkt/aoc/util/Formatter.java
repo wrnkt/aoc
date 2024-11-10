@@ -38,5 +38,10 @@ public class Formatter {
         var overview = String.format("%d -> %s", year, dayView.toString());
         return overview;
     }
+
+    public static String capitalize(String s) {
+        if (s == null || s.isBlank()) return s;
+        return Character.toUpperCase(s.charAt(0)) + s.substring(1).toLowerCase();
+    }
     
 }

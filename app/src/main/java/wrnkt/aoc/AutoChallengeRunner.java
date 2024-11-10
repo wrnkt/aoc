@@ -1,23 +1,17 @@
 package wrnkt.aoc;
 
 import java.lang.reflect.InvocationTargetException;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import wrnkt.aoc.util.Day;
-import wrnkt.aoc.util.Util;
 import wrnkt.aoc.util.Formatter;
 import wrnkt.aoc.util.Numbers;
 
@@ -100,7 +94,7 @@ public class AutoChallengeRunner {
     }
 
     private void run(Day day) {
-        log.info(">>>>> Day {} <<<<<", Util.capitalize(day.dayName()));
+        log.info(">>>>> Day {} <<<<<", Formatter.capitalize(day.dayName()));
         day.desc().ifPresent((desc) -> {
             log.info("{}", desc);
         });
@@ -121,7 +115,7 @@ public class AutoChallengeRunner {
     private String dayComponent(Integer day) {
         String spelledDate = Numbers.spelledNumber(day);
         // log.info("day({}) -> spelledDate({})", day, spelledDate);
-        return Util.capitalize(spelledDate);
+        return Formatter.capitalize(spelledDate);
     }
 
     private void loadDays() {

@@ -46,6 +46,14 @@ public class Numbers {
         return spelledNumberMap.get(i);
     }
 
+    public static Integer spellingToDigit(String s) {
+        var i = spelledNumberMap.entrySet().stream()
+                .filter((var entry) -> s.equals(entry.getValue()))
+                .map((var entry) -> entry.getKey())
+                .findFirst();
+        return i.get();
+    }
+
     public static final List<String> writtenNumbers = Arrays.asList(
         "one",
         "two",
