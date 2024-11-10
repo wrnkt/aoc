@@ -188,9 +188,9 @@ public class Two implements Day {
         System.out.println(String.format("Sum of powers: %d", sumOfPowerSet));
     }
 
-    public void run() {
+    @Override
+    public void solution(BufferedReader reader) {
         try {
-            BufferedReader reader = getInputReader();
             ArrayList<GameInfo> games = loadGamesFromReader(reader);
 
             partOne(games);

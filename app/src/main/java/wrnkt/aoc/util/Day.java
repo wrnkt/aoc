@@ -16,6 +16,17 @@ public interface Day extends Runnable {
         return Optional.empty();
     }
 
+    public void solution(BufferedReader br);
+
+    public default void run() {
+        var br = getInputReader();
+        if (br.isEmpty()) {
+            log.error("failed to load input for {}", dayName());
+            return;
+        }
+        solution(br.get());
+    }
+
     public default String dayName() {
         String dayName = null;
 
@@ -28,30 +39,27 @@ public interface Day extends Runnable {
         return dayName;
     }
 
-    public default String inputFileName() {
+    public default Optional<String> inputFileName() {
         var calculatedDay = getNumericalDay();
-        if (calculatedDay.isEmpty()) return null;
-
         var calculatedYear = getYear();
-        if (calculatedYear.isEmpty()) return null;
-        try {
-            var path = String.format("%d/%d.txt", calculatedYear.get(), calculatedDay.get());
-            log.info("path: {}", path);
-            return path;
-        } catch (Exception e) {
-            log.error("Failed to get input file name.");
-        }
-        return null;
+
+        if (calculatedDay.isEmpty() || calculatedYear.isEmpty()) return Optional.empty();
+
+        var path = String.format("%d/%d.txt", calculatedYear.get(), calculatedDay.get());
+        return Optional.of(path);
     }
 
-    public default BufferedReader getInputReader() throws Exception {
+    public default Optional<BufferedReader> getInputReader() {
+        var foundPath = inputFileName();
+        if (foundPath.isEmpty()) return Optional.empty();
+
         try {
-            InputStream is = getClass().getClassLoader().getResourceAsStream(inputFileName());
-            return new BufferedReader(new InputStreamReader(is));
+            InputStream is = getClass().getClassLoader().getResourceAsStream(foundPath.get());
+            return Optional.of(new BufferedReader(new InputStreamReader(is)));
         } catch (Exception e) {
             log.error("Could not get reader for input.");
         }
-        return null;
+        return Optional.empty();
     }
 
     /* ----------------- */

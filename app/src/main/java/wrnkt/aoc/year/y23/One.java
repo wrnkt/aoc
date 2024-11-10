@@ -102,10 +102,11 @@ public class One implements Day {
         return Integer.parseInt(String.format("%s%s", first, last));
     }
 
-    public void run() {
+    @Override
+    public void solution(BufferedReader reader) {
         ArrayList<Integer> calValues = new ArrayList<>();
 
-        try (BufferedReader reader = getInputReader()) {
+        try {
             String line;
             while ((line = reader.readLine()) != null) {
                 Integer c = getCalibrationValue(line);
@@ -115,7 +116,6 @@ public class One implements Day {
         } catch (Exception e) {
             System.out.println("Failed to run this challenge.");
             System.out.println(String.format("%s", inputFileName()));
-            e.printStackTrace(System.out);
         }
         int total = calValues.stream()
                 .reduce(0, (a, b) -> a + b);

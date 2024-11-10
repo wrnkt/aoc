@@ -204,9 +204,9 @@ public class Five implements Day {
         return results;
     }
 
-    public void run() {
+    @Override
+    public void solution(BufferedReader reader) {
         try {
-            BufferedReader reader = getInputReader();
             readData(reader);
             sort();
             Map<Long, HashMap<ValueType, Long>> data = mapSeeds();

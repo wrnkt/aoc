@@ -187,9 +187,9 @@ public class Three implements Day {
         return numbers;
     }
 
-    public void run() {
-        try (BufferedReader br = getInputReader()) {
-
+    @Override
+    public void solution(BufferedReader br) {
+        try {
             ArrayList<Number> nums = processFile(Path.of(""));
 
             Stream<Number> partNumbers = nums.stream().filter((n) -> n.isPartNumber());
