@@ -42,7 +42,7 @@ public class Numbers {
         spelledNumberMap.put(30, "thirty");
     }
 
-    public static String spelledNumber(Integer i) {
+    public static String digitToSpelling(Integer i) {
         return spelledNumberMap.get(i);
     }
 

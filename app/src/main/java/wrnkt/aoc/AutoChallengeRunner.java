@@ -113,7 +113,7 @@ public class AutoChallengeRunner {
     }
 
     private String dayComponent(Integer day) {
-        String spelledDate = Numbers.spelledNumber(day);
+        String spelledDate = Numbers.digitToSpelling(day);
         // log.info("day({}) -> spelledDate({})", day, spelledDate);
         return Formatter.capitalize(spelledDate);
     }
