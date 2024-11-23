@@ -1,4 +1,6 @@
 plugins {
+    java
+    //scala
     application
 }
 
@@ -13,6 +15,8 @@ dependencies {
     implementation(libs.guava)
     testImplementation(libs.junit.jupiter)
 
+    implementation(libs.scala.library)
+
     testRuntimeOnly(libs.junit.platform.launcher)
 }
 
@@ -25,6 +29,28 @@ java {
 application {
     mainClass = "wrnkt.aoc.Main"
 }
+
+/*
+sourceSets {
+    main {
+        scala {
+            srcDir("src/main/scala")  // Scala source directory
+        }
+        java {
+            srcDir("src/main/java")   // Java source directory (if you mix Java and Scala)
+        }
+    }
+    test {
+        scala {
+            srcDir("src/test/scala")  // Scala test directory
+        }
+        java {
+            srcDir("src/test/java")   // Java test directory (if you have Java tests)
+        }
+    }
+}
+*/
+
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
