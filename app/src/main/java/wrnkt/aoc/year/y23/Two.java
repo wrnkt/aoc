@@ -25,7 +25,7 @@ enum Color {
 record GameInfo(int id, ArrayList<Map<Color, Integer>> handfuls) {
 }
 
-public class Two implements Day {
+public class Two extends Day {
 
     public Optional<String> desc() {
         return Optional.of("Cant remember desc");

@@ -7,7 +7,7 @@ import java.util.List;
 
 import wrnkt.aoc.util.Day;
 
-public class Six implements Day {
+public class Six extends Day {
 
     private List<Race> readRaces(BufferedReader reader) {
         List<Race> races = new ArrayList<>();

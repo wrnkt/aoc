@@ -11,8 +11,10 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import wrnkt.aoc.output.ConsoleOutput;
+import wrnkt.aoc.output.DayOutput;
 import wrnkt.aoc.output.FileOutput;
-import wrnkt.aoc.output.Output;
+import wrnkt.aoc.output.LoggerOutput;
 import wrnkt.aoc.util.Day;
 import wrnkt.aoc.util.Formatter;
 import wrnkt.aoc.util.Numbers;
@@ -104,25 +106,18 @@ public class AutoChallengeRunner {
     }
 
     private void run(Day day) {
-        // Output out;
-        // switch (outputType) {
-        //     case CONSOLE:
-        //         out = new FileOutput(day.dayName() + ".txt");
-        //         break;
-        //     case FILE:
-        //         out = new FileOutput(day.dayName() + ".txt");
-        //         return;
-        //     case LOG:
-        //         return;
-        //     default:
-        //         return;
-        // }
-        // out.submit(String.format(">>>>> Day %s <<<<<", Formatter.capitalize(day.dayName())));
-        // day.desc().ifPresent((var description) -> {
-        //     out.submit(String.format("%s", description));
-        // });
-        // assign output inside day
-        // or capture
+        DayOutput output = null;
+        switch (outputType) {
+        case CONSOLE:  output = new ConsoleOutput();
+                break;
+        case FILE:     output = new FileOutput();
+                break;
+        case LOG:      output = new LoggerOutput();
+                break;
+        default:       output = new ConsoleOutput();
+                break;
+        }
+        output.registerDay(day);
         
         log.info(">>>>> Day {} <<<<<", Formatter.capitalize(day.dayName()));
         day.desc().ifPresent((desc) -> {

@@ -12,7 +12,7 @@ import java.util.Map;
 
 import wrnkt.aoc.util.Day;
 
-public class Five implements Day {
+public class Five extends Day {
 
     private List<Long> seeds = new ArrayList<>();
 

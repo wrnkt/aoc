@@ -4,18 +4,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import wrnkt.aoc.AutoChallengeRunner;
+import wrnkt.aoc.output.DayOutput;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Optional;
 
-public interface Day extends Runnable {
+public abstract class Day implements Runnable {
 
     public static final Logger log = LoggerFactory.getLogger(Day.class);
 
-    public default Optional<String> desc() {
+    private DayOutput output;
+
+    public Optional<String> desc() {
         return Optional.empty();
+    }
+
+    public void print(String s) {
+        output.submit(s);
     }
 
     /**
@@ -24,14 +31,14 @@ public interface Day extends Runnable {
      *
      * @param   br  the puzzle's input
      */
-    public void solution(BufferedReader br);
+    public abstract void solution(BufferedReader br);
 
     /**
      * Called by the {@link AutoChallengeRunner}, running the provided solution against the
      * puzzle's input.
      */
     @Override
-    public default void run() {
+    public void run() {
         var br = getInputReader();
         if (br.isEmpty()) {
             log.error("failed to load input for {}", dayName());
@@ -40,7 +47,7 @@ public interface Day extends Runnable {
         solution(br.get());
     }
 
-    public default String dayName() {
+    public String dayName() {
         var calculatedDayName = getSpelledDay();
         if (calculatedDayName.isEmpty()) {
             log.error("Could not determine proper day name, defaulting to class name");
@@ -49,7 +56,7 @@ public interface Day extends Runnable {
         return calculatedDayName.get();
     }
 
-    public default Optional<String> inputFileName() {
+    public Optional<String> inputFileName() {
         var calculatedDay = getNumericalDay();
         var calculatedYear = getYear();
 
@@ -59,7 +66,7 @@ public interface Day extends Runnable {
         return Optional.of(path);
     }
 
-    public default Optional<BufferedReader> getInputReader() {
+    public Optional<BufferedReader> getInputReader() {
         var foundPath = inputFileName();
         if (foundPath.isEmpty()) return Optional.empty();
 
@@ -76,14 +83,16 @@ public interface Day extends Runnable {
     /*      UTILITY      */
     /* ----------------- */
 
-    public default Optional<Integer> getNumericalDay() {
+    public Optional<Integer> getNumericalDay() {
         var spelledDay = getSpelledDay();
         if (spelledDay.isEmpty()) return Optional.empty();
 
         return Optional.of(Numbers.spellingToDigit(spelledDay.get()));
     }
 
-    public default Optional<String> getSpelledDay() {
+    // TODO: calculate this on first access and store in a member.
+    //       return from member on consecutive accesses.
+    public Optional<String> getSpelledDay() {
         String className = this.getClass().getName();
 
         int lastPeriodIdx = className.lastIndexOf('.');
@@ -96,7 +105,7 @@ public interface Day extends Runnable {
         return Optional.ofNullable(dateOfMonth);
     }
 
-    public default Optional<Integer> getYear() {
+    public Optional<Integer> getYear() {
         String className = this.getClass().getName();
 
         int lastPeriodIdx = className.lastIndexOf('.');
@@ -119,5 +128,8 @@ public interface Day extends Runnable {
             return Optional.of(year);
         }
     }
+
+    public DayOutput getOutput() { return this.output; }
+    public void setOutput(DayOutput output) { this.output = output; }
 
 }

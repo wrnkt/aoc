@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import wrnkt.aoc.util.Day;
 
-public class One implements Day {
+public class One extends Day {
 
     public Optional<String> desc() {
         return Optional.of("Something about snow or something...");
@@ -91,12 +91,13 @@ public class One implements Day {
         return null;
     }
 
-    private static Integer getCalibrationValue(final String s) {
+    private Integer getCalibrationValue(final String s) {
         Character first = firstNumber(s);
         Character last = lastNumber(s);
 
         if (first == null || last == null) {
-            System.out.println("[ERROR]: WTF NOT SUPPOSED TO HAPPEN");
+            // System.out.println("[ERROR]: WTF NOT SUPPOSED TO HAPPEN");
+            print("[ERROR]: WTF NOT SUPPOSED TO HAPPEN");
         }
 
         return Integer.parseInt(String.format("%s%s", first, last));
@@ -110,16 +111,17 @@ public class One implements Day {
             String line;
             while ((line = reader.readLine()) != null) {
                 Integer c = getCalibrationValue(line);
-                System.out.println(String.format("%s -> %d", line, c));
+                print(String.format("%s -> %d", line, c));
                 calValues.add(c);
             }
         } catch (Exception e) {
-            System.out.println("Failed to run this challenge.");
-            System.out.println(String.format("%s", inputFileName()));
+            print("Failed to run this challenge.");
+            print(String.format("%s", inputFileName()));
         }
         int total = calValues.stream()
                 .reduce(0, (a, b) -> a + b);
 
-        System.out.println(String.format("[INFO]: Total: %d", total));
+        print(String.format("[INFO]: Total: %d", total));
     }
+
 }

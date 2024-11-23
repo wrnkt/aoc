@@ -112,7 +112,7 @@ class Number {
     }
 }
 
-public class Three implements Day {
+public class Three extends Day {
 
     public static boolean isSymbol(Character c) {
         if (Character.isDigit(c) || c == '.') {
