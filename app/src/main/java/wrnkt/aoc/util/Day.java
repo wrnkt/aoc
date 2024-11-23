@@ -3,6 +3,8 @@ package wrnkt.aoc.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import wrnkt.aoc.AutoChallengeRunner;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,8 +18,19 @@ public interface Day extends Runnable {
         return Optional.empty();
     }
 
+    /**
+     * Solve the problem in this function. The {@link BufferedReader} provides access to the
+     * content of the the puzzle's auto-loaded input file.
+     *
+     * @param   br  the puzzle's input
+     */
     public void solution(BufferedReader br);
 
+    /**
+     * Called by the {@link AutoChallengeRunner}, running the provided solution against the
+     * puzzle's input.
+     */
+    @Override
     public default void run() {
         var br = getInputReader();
         if (br.isEmpty()) {
@@ -28,15 +41,12 @@ public interface Day extends Runnable {
     }
 
     public default String dayName() {
-        String dayName = null;
-
         var calculatedDayName = getSpelledDay();
         if (calculatedDayName.isEmpty()) {
-            log.error("Could not determine proper day name.");
-            dayName = this.getClass().getSimpleName();
-            log.error("Defaulting to className {}", dayName);
+            log.error("Could not determine proper day name, defaulting to class name");
+            return this.getClass().getSimpleName();
         }
-        return dayName;
+        return calculatedDayName.get();
     }
 
     public default Optional<String> inputFileName() {

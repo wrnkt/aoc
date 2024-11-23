@@ -11,6 +11,8 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import wrnkt.aoc.output.FileOutput;
+import wrnkt.aoc.output.Output;
 import wrnkt.aoc.util.Day;
 import wrnkt.aoc.util.Formatter;
 import wrnkt.aoc.util.Numbers;
@@ -28,6 +30,8 @@ public class AutoChallengeRunner {
 
     public Set<Class<? extends Day>> loadedDays = new HashSet<>();
 
+    private OutputType outputType = OutputType.CONSOLE;
+
 
     public AutoChallengeRunner(Map<Integer,Set<Integer>> puzzleList) {
         setPuzzleList(puzzleList);
@@ -37,6 +41,12 @@ public class AutoChallengeRunner {
     /* ----------------- */
     /*       SETUP       */
     /* ----------------- */
+
+    enum OutputType { FILE, CONSOLE, LOG }
+
+    public void setOutput(OutputType type) {
+        this.outputType = type;
+    }
 
     public void addPuzzles(int year, Integer... days) {
         var yearsPuzzles = getPuzzleList().getOrDefault(year, new HashSet<>());
@@ -94,6 +104,26 @@ public class AutoChallengeRunner {
     }
 
     private void run(Day day) {
+        // Output out;
+        // switch (outputType) {
+        //     case CONSOLE:
+        //         out = new FileOutput(day.dayName() + ".txt");
+        //         break;
+        //     case FILE:
+        //         out = new FileOutput(day.dayName() + ".txt");
+        //         return;
+        //     case LOG:
+        //         return;
+        //     default:
+        //         return;
+        // }
+        // out.submit(String.format(">>>>> Day %s <<<<<", Formatter.capitalize(day.dayName())));
+        // day.desc().ifPresent((var description) -> {
+        //     out.submit(String.format("%s", description));
+        // });
+        // assign output inside day
+        // or capture
+        
         log.info(">>>>> Day {} <<<<<", Formatter.capitalize(day.dayName()));
         day.desc().ifPresent((desc) -> {
             log.info("{}", desc);
