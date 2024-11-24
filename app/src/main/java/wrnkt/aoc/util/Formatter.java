@@ -10,6 +10,8 @@ public class Formatter {
         var year = entry.getKey();
         var days = List.of(entry.getValue().toArray());
 
+        if (days.size() == 0) return "No puzzles.";
+
         StringBuilder dayView = new StringBuilder();
 
         Integer prevNumber = (Integer) days.get(0);
