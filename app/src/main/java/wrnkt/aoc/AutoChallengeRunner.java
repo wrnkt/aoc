@@ -4,9 +4,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,8 +62,10 @@ public class AutoChallengeRunner {
     public static class AutoChallengeRunnerBuilder {
 
         private Map<Integer,Set<Integer>> puzzleList = new HashMap<>();
+        private Map<Integer,Set<Integer>> excludedPuzzleList = new HashMap<>();
 
         public AutoChallengeRunner build() {
+            applyExclusions();
             log.info("-----------------------------");
             log.info("Building AutoChallengeRunner");
             log.info("Puzzles:");
@@ -69,6 +74,18 @@ public class AutoChallengeRunner {
             log.info("-----------------------------");
             var runner = new AutoChallengeRunner(puzzleList);
             return runner;
+        }
+
+        private void applyExclusions() {
+            for (Map.Entry<Integer, Set<Integer>> entry : puzzleList.entrySet()) {
+                var year = entry.getKey();
+                var puzzles = entry.getValue();
+                var excludedPuzzles = excludedPuzzleList.get(year);
+                if (excludedPuzzles != null) {
+                    puzzles.removeAll(excludedPuzzles);
+                    puzzleList.put(year, puzzles);
+                }
+            }
         }
 
         public AutoChallengeRunnerBuilder addPuzzle(Integer year, Integer... days) {
@@ -82,6 +99,22 @@ public class AutoChallengeRunner {
             var newList = puzzleList.getOrDefault(year, new HashSet<>());
             newList.add(day);
             puzzleList.put(year, newList);
+            return this;
+        }
+
+        public AutoChallengeRunnerBuilder addPuzzleRange(Integer year, Integer startInc, Integer endInc) {
+            var puzzles = puzzleList.getOrDefault(year, new HashSet<>());
+            var newPuzzles = IntStream.rangeClosed(startInc, endInc).boxed()
+                .collect(Collectors.toSet());
+            puzzles.addAll(newPuzzles);
+            puzzleList.put(year, puzzles);
+            return this;
+        }
+
+        public AutoChallengeRunnerBuilder excludePuzzle(Integer year, Integer day) {
+            var excludedPuzzles = excludedPuzzleList.getOrDefault(year, new HashSet<>());
+            excludedPuzzles.add(day);
+            excludedPuzzleList.put(year, excludedPuzzles);
             return this;
         }
 
