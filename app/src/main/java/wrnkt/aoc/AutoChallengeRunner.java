@@ -20,19 +20,15 @@ import wrnkt.aoc.util.Formatter;
 import wrnkt.aoc.util.Numbers;
 
 public class AutoChallengeRunner {
-    
     public static final Logger log = LoggerFactory.getLogger(AutoChallengeRunner.class);
 
-
     public static final String YEAR_PACKAGE = "wrnkt.aoc.year";
-
     public static final Set<Integer> DEFAULT_YEARS = Set.of(2023);
 
     public Map<Integer,Set<Integer>> puzzleList = new HashMap<>();
-
     public Set<Class<? extends Day>> loadedDays = new HashSet<>();
 
-    private OutputType outputType = OutputType.CONSOLE;
+    private OutputType outputType = OutputType.FILE;
 
 
     public AutoChallengeRunner(Map<Integer,Set<Integer>> puzzleList) {
@@ -104,19 +100,17 @@ public class AutoChallengeRunner {
         });
     }
 
-    private void run(Day day) {
-        DayOutput output = null;
-        switch (outputType) {
-        case CONSOLE:  output = new ConsoleOutput();
-                break;
-        case FILE:     output = new FileOutput();
-                break;
-        case LOG:      output = new LoggerOutput();
-                break;
-        default:       output = new ConsoleOutput();
-                break;
+    private DayOutput initOutput(Day day, OutputType type) {
+        switch (type) {
+        case CONSOLE:   return new ConsoleOutput(day);
+        case FILE:      return new FileOutput(day);
+        case LOG:       return new LoggerOutput(day);
+        default:        return new ConsoleOutput(day);
         }
-        output.registerDay(day);
+    }
+
+    private void run(Day day) {
+        initOutput(day, outputType);
         
         log.info(">>>>> Day {} <<<<<", Formatter.capitalize(day.dayName()));
         day.desc().ifPresent((desc) -> {
@@ -166,7 +160,7 @@ public class AutoChallengeRunner {
                         log.info("loaded: {}", fqName);
                     }, () -> {
                         log.error("Failed to load day: {}", fqName);
-                        // NOTE: couldn't load day
+                        // FAIL: couldn't load day
                     });
                 }
             });

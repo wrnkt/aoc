@@ -1,6 +1,5 @@
 package wrnkt.aoc.output;
 
-import java.util.Map;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -17,7 +16,7 @@ public abstract class DayOutput {
         if (!isReady()) {
             log.error("not ready for output: failed to register Day");
             log.info("defaulting to SystemOutput");
-            day.setOutput(new SystemOutput());
+            day.setOutput(new SystemOutOutput(day));
         }
         day.setOutput(this);
         registeredDay = Optional.of(day);
@@ -30,4 +29,5 @@ public abstract class DayOutput {
     public abstract boolean isReady();
 
     public abstract void submit(String s);
+
 }

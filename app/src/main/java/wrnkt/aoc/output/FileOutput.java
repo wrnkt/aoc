@@ -24,12 +24,13 @@ public class FileOutput extends DayOutput {
 
     private PrintWriter printWriter = null;
 
-    public FileOutput() {
-        this(DEFAULT_OUTPUT_DIR_NAME);
+    public FileOutput(Day day) {
+        this(day, DEFAULT_OUTPUT_DIR_NAME);
     }
-    
-    public FileOutput(String outputDirName) {
+
+    public FileOutput(Day day, String outputDirName) {
         outputFolder = Paths.get(BASE_PATH.toAbsolutePath() + outputDirName);
+        registerDay(day);
     }
 
     private void createOutputFolder() {
@@ -59,8 +60,8 @@ public class FileOutput extends DayOutput {
     public void registerDay(Day day) {
         createOutputFolder();
         var outputOpt = createDayOutputFile(day);
-        outputOpt.ifPresentOrElse((printWriter) -> {
-            printWriter = printWriter;
+        outputOpt.ifPresentOrElse((writer) -> {
+            printWriter = writer;
         }, () -> {
         });
 

@@ -12,6 +12,10 @@ public class LoggerOutput extends DayOutput {
 
     Class<? extends Day> dayClazz;
 
+    public LoggerOutput(Day day) {
+        registerDay(day);
+    }
+
     public void registerDay(Day day) {
         dayClazz = day.getClass();
         dayLog = LoggerFactory.getLogger(dayClazz);
