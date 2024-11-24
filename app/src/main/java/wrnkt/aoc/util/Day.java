@@ -44,6 +44,10 @@ public abstract class Day implements Runnable {
             log.error("failed to load input for {}", dayName());
             return;
         }
+        if (getOutput() == null) {
+            log.error("No output set for Day.");
+            return;
+        }
         solution(br.get());
     }
 

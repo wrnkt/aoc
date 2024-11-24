@@ -95,7 +95,6 @@ public class AutoChallengeRunner {
     /* ----------------- */
 
     public void runAll() {
-        Day day;
         getLoadedDays().forEach((Class<? extends Day> loadedDay) -> {
             try {
                 run(loadedDay.getDeclaredConstructor().newInstance());
