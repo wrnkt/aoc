@@ -2,6 +2,7 @@ package wrnkt.aoc.util;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.List;
 
 public class Formatter {
@@ -44,6 +45,12 @@ public class Formatter {
     public static String capitalize(String s) {
         if (s == null || s.isBlank()) return s;
         return Character.toUpperCase(s.charAt(0)) + s.substring(1).toLowerCase();
+    }
+
+    public static String commaSep(List<?> list) {
+        return list.stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(", "));
     }
     
 }
