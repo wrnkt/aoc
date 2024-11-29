@@ -24,21 +24,28 @@ import wrnkt.aoc.util.Numbers;
 public class AutoChallengeRunner {
     public static final Logger log = LoggerFactory.getLogger(AutoChallengeRunner.class);
 
-    public static final String YEAR_PACKAGE = "wrnkt.aoc.year";
-    public static final Set<Integer> DEFAULT_YEARS = Set.of(2023);
+    public static final String DEFAULT_YEAR_PACKAGE = "aoc.year";
+    private String yearPackage = DEFAULT_YEAR_PACKAGE;
+
+    public static final OutputType DEFAULT_OUTPUT_TYPE = OutputType.CONSOLE;
+    private OutputType outputType = DEFAULT_OUTPUT_TYPE;
 
     public Map<Integer,Set<Integer>> puzzleList = new HashMap<>();
     public Set<Class<? extends Day>> loadedDays = new HashSet<>();
 
-    private OutputType outputType = OutputType.CONSOLE;
-
-    public AutoChallengeRunner(Map<Integer,Set<Integer>> puzzleList) {
+    public AutoChallengeRunner(String yearPackage, OutputType outputType, Map<Integer,Set<Integer>> puzzleList) {
+        setYearPackage(yearPackage);
+        setOutput(outputType);
         setPuzzleList(puzzleList);
+        // System.out.println(getInfo());
     }
 
     public AutoChallengeRunner(OutputType outputType, Map<Integer,Set<Integer>> puzzleList) {
-        setPuzzleList(puzzleList);
-        setOutput(outputType);
+        this(DEFAULT_YEAR_PACKAGE, outputType, puzzleList);
+    }
+
+    public AutoChallengeRunner(Map<Integer,Set<Integer>> puzzleList) {
+        this(DEFAULT_YEAR_PACKAGE, DEFAULT_OUTPUT_TYPE, puzzleList);
     }
 
     /* ----------------- */
@@ -47,14 +54,23 @@ public class AutoChallengeRunner {
 
     enum OutputType { FILE, CONSOLE, LOG }
 
-    public void setOutput(OutputType type) {
-        this.outputType = type;
-    }
-
     public void addPuzzles(int year, Integer... days) {
         var yearsPuzzles = getPuzzleList().getOrDefault(year, new HashSet<>());
         yearsPuzzles.addAll(Arrays.asList(days));
         getPuzzleList().put(year, yearsPuzzles);
+    }
+
+    public String getInfo() {
+        StringBuilder sb = new StringBuilder();
+        log.info("-----------------------------");
+        sb.append("AutoChallengeRunner config: " + "\n");
+        sb.append("\tyearPackage: " + getYearPackage() + "\n");
+        sb.append("\toutputType: " + getOutput() + "\n");
+        sb.append("\tPuzzles:\n");
+        puzzleList.entrySet().stream()
+            .forEach((var entry) -> sb.append("\t\t" + Formatter.formatYearOverview(entry) + "\n"));
+        log.info("-----------------------------");
+        return sb.toString();
     }
 
     public static AutoChallengeRunnerBuilder setup() {
@@ -66,6 +82,7 @@ public class AutoChallengeRunner {
         private Map<Integer,Set<Integer>> puzzleList = new HashMap<>();
         private Map<Integer,Set<Integer>> excludedPuzzleList = new HashMap<>();
 
+        private String yearPackage;
         private OutputType outputType = OutputType.CONSOLE;
 
         public AutoChallengeRunner build() {
@@ -76,18 +93,24 @@ public class AutoChallengeRunner {
             puzzleList.entrySet().stream()
                 .forEach((var entry) -> log.info("\t{}", Formatter.formatYearOverview(entry)));
             log.info("-----------------------------");
-            var runner = new AutoChallengeRunner(outputType, puzzleList);
+            var runner = new AutoChallengeRunner(yearPackage, outputType, puzzleList);
             return runner;
         }
 
         public AutoChallengeRunnerBuilder config(Config config) {
             setOutput(config.getOutputType());
+            setYearPackage(config.getYearPackage());
             return this;
         }
 
         public AutoChallengeRunnerBuilder autoConfig() {
             var config = new Config();
             config(config);
+            return this;
+        }
+
+        public AutoChallengeRunnerBuilder setYearPackage(String yearPackage) {
+            this.yearPackage = yearPackage;
             return this;
         }
 
@@ -169,7 +192,7 @@ public class AutoChallengeRunner {
 
     private void run(Day day) {
         // handle multiple outputs
-        initOutput(day, outputType);
+        initOutput(day, getOutput());
         
         log.info(">>>>> Day {} <<<<<", Formatter.capitalize(day.dayName()));
         day.desc().ifPresent((desc) -> {
@@ -191,7 +214,6 @@ public class AutoChallengeRunner {
 
     private String dayComponent(Integer day) {
         String spelledDate = Numbers.digitToSpelling(day);
-        // log.info("day({}) -> spelledDate({})", day, spelledDate);
         return Formatter.capitalize(spelledDate);
     }
 
@@ -202,7 +224,7 @@ public class AutoChallengeRunner {
     }
 
     private String buildFQName(Integer year, Integer day) {
-        String fqName = String.format("%s.%s.%s", YEAR_PACKAGE, yearComponent(year), dayComponent(day));
+        String fqName = String.format("%s.%s.%s", getYearPackage(), yearComponent(year), dayComponent(day));
         return fqName;
     }
 
@@ -260,6 +282,22 @@ public class AutoChallengeRunner {
 
     public void setLoadedDays(Set<Class<? extends Day>> puzzleList) {
         this.loadedDays = puzzleList;
+    }
+
+    public OutputType getOutput() {
+        return this.outputType;
+    }
+
+    public void setOutput(OutputType type) {
+        this.outputType = type;
+    }
+
+    public String getYearPackage() {
+        return this.yearPackage;
+    }
+
+    public void setYearPackage(String yearPackage) {
+        this.yearPackage = yearPackage;
     }
 
 }
