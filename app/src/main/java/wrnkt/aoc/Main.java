@@ -7,7 +7,9 @@ public class Main {
     public static final Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String... args) {
+        Config config = new Config();
         var r = AutoChallengeRunner.setup()
+                .config(config)
                 // .addPuzzleRange(2023, 1, 6)
                 // .addPuzzle(2023, 7)
                 .addPuzzle(2023, 8)

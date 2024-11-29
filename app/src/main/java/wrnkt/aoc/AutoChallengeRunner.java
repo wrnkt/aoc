@@ -1,11 +1,9 @@
 package wrnkt.aoc;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -34,11 +32,14 @@ public class AutoChallengeRunner {
 
     private OutputType outputType = OutputType.CONSOLE;
 
-
     public AutoChallengeRunner(Map<Integer,Set<Integer>> puzzleList) {
         setPuzzleList(puzzleList);
     }
 
+    public AutoChallengeRunner(OutputType outputType, Map<Integer,Set<Integer>> puzzleList) {
+        setPuzzleList(puzzleList);
+        setOutput(outputType);
+    }
 
     /* ----------------- */
     /*       SETUP       */
@@ -65,7 +66,7 @@ public class AutoChallengeRunner {
         private Map<Integer,Set<Integer>> puzzleList = new HashMap<>();
         private Map<Integer,Set<Integer>> excludedPuzzleList = new HashMap<>();
 
-        //private List<OutputType> outputTypes;
+        private OutputType outputType = OutputType.CONSOLE;
 
         public AutoChallengeRunner build() {
             applyExclusions();
@@ -75,22 +76,24 @@ public class AutoChallengeRunner {
             puzzleList.entrySet().stream()
                 .forEach((var entry) -> log.info("\t{}", Formatter.formatYearOverview(entry)));
             log.info("-----------------------------");
-            var runner = new AutoChallengeRunner(puzzleList);
+            var runner = new AutoChallengeRunner(outputType, puzzleList);
             return runner;
         }
 
-        /*
-        public void setOutput(String... typeStrings) {
-            List<OutputType> outputTypes = new ArrayList<>();
-            for (var s : typeStrings) {
-                try {
-                    var type = OutputType.valueOf(s);
-                    outputTypes.add(type);
-                } catch (IllegalArgumentException e) {
-                }
-            }
+        public AutoChallengeRunnerBuilder config(Config config) {
+            setOutput(config.getOutputType());
+            return this;
         }
-        */
+
+        public AutoChallengeRunnerBuilder setOutput(String typeString) {
+            try {
+                var type = OutputType.valueOf(typeString.toUpperCase());
+                this.outputType = type;
+            } catch (IllegalArgumentException e) {
+                log.error("Illegal output type: {}", e.getMessage());
+            }
+            return this;
+        }
 
         public AutoChallengeRunnerBuilder addPuzzle(Integer year, Integer... days) {
             var yearsPuzzles = puzzleList.getOrDefault(year, new HashSet<>());
@@ -159,6 +162,7 @@ public class AutoChallengeRunner {
     }
 
     private void run(Day day) {
+        // handle multiple outputs
         initOutput(day, outputType);
         
         log.info(">>>>> Day {} <<<<<", Formatter.capitalize(day.dayName()));
