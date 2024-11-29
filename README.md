@@ -2,7 +2,14 @@
 
 ## How To Use
 
-To start solving a new day, follow these steps.
+### Configuration
+
+Configure the package scanned for solutions in `application.properties`.
+
+### Example
+
+To start solving a new day, follow these steps. These steps assume the base
+configuration in `application.properties`.
 
 1. Put the input file in `./app/src/main/resources/<year>/<day>.txt`. For
    example, the input file for Day One in 2023 would be
