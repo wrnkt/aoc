@@ -4,7 +4,9 @@
 
 ### Configuration
 
-Configure the package scanned for solutions in `application.properties`.
+Configure the package scanned for solutions in `application.properties`. Set the
+runner to run days 1, 2, and 3 in 2023 with `runner.year.2023=1,2,3` in
+`application.properties`. Add as many years as you would like.
 
 ### Example
 

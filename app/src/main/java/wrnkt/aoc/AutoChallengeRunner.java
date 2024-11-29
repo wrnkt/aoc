@@ -100,6 +100,7 @@ public class AutoChallengeRunner {
         public AutoChallengeRunnerBuilder config(Config config) {
             setOutput(config.getOutputType());
             setYearPackage(config.getYearPackage());
+            setPuzzleList(config.getPuzzleList());
             return this;
         }
 
@@ -121,6 +122,11 @@ public class AutoChallengeRunner {
             } catch (IllegalArgumentException e) {
                 log.error("Illegal output type: {}", e.getMessage());
             }
+            return this;
+        }
+
+        public AutoChallengeRunnerBuilder setPuzzleList(Map<Integer, Set<Integer>> puzzleList) {
+            this.puzzleList = puzzleList;
             return this;
         }
 
