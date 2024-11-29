@@ -85,6 +85,12 @@ public class AutoChallengeRunner {
             return this;
         }
 
+        public AutoChallengeRunnerBuilder autoConfig() {
+            var config = new Config();
+            config(config);
+            return this;
+        }
+
         public AutoChallengeRunnerBuilder setOutput(String typeString) {
             try {
                 var type = OutputType.valueOf(typeString.toUpperCase());
