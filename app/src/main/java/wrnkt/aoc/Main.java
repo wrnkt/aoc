@@ -10,6 +10,6 @@ public class Main {
         AutoChallengeRunner.setup()
         .autoConfig()
         .build()
-        .runAll();;
+        .runAll();
     }
 }
