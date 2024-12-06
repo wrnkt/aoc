@@ -62,7 +62,7 @@ public class AutoChallengeRunner {
 
     public String getInfo() {
         StringBuilder sb = new StringBuilder();
-        log.info("-----------------------------");
+        System.out.println("-----------------------------");
         sb.append("AutoChallengeRunner config: " + "\n");
         sb.append("\tyearPackage: " + getYearPackage() + "\n");
         sb.append("\toutputType: " + getOutput() + "\n");
@@ -87,12 +87,12 @@ public class AutoChallengeRunner {
 
         public AutoChallengeRunner build() {
             applyExclusions();
-            log.info("-----------------------------");
-            log.info("Building AutoChallengeRunner");
-            log.info("Puzzles:");
+            System.out.println("Building AutoChallengeRunner...");
+            System.out.println("-----------------------------");
+            System.out.println("Puzzles:");
             puzzleList.entrySet().stream()
-                .forEach((var entry) -> log.info("\t{}", Formatter.formatYearOverview(entry)));
-            log.info("-----------------------------");
+                .forEach((var entry) -> System.out.println(String.format("\t%s", Formatter.formatYearOverview(entry))));
+            System.out.println("-----------------------------");
             var runner = new AutoChallengeRunner(yearPackage, outputType, puzzleList);
             return runner;
         }
@@ -200,13 +200,14 @@ public class AutoChallengeRunner {
         // handle multiple outputs
         initOutput(day, getOutput());
         
-        log.info(">>>>> Day {} <<<<<", Formatter.capitalize(day.dayName()));
+        System.out.println();
+        System.out.println(String.format(">>>>> Day %s <<<<<", Formatter.capitalize(day.dayName())));
         day.desc().ifPresent((desc) -> {
-            log.info("{}", desc);
+            System.out.println(String.format("%s", desc));
         });
-        log.info("-------------------");
+        System.out.println("-------------------");
         day.run();
-        log.info("-------------------");
+        System.out.println("-------------------");
     }
 
     /* ----------------- */
@@ -225,7 +226,8 @@ public class AutoChallengeRunner {
 
     private void loadDays() {
         var loadedDays = _loadDays(getPuzzleList());
-        log.info("loaded {} puzzle classes.", loadedDays.size());
+        String classPlural = loadedDays.size() > 1 ? "classes" : "class";
+        System.out.println(String.format("Loaded %d puzzle %s.", loadedDays.size(), classPlural));
         setLoadedDays(loadedDays);
     }
 
@@ -244,7 +246,7 @@ public class AutoChallengeRunner {
                     var loadedDayCls = loadDay(fqName);
                     loadedDayCls.ifPresentOrElse((Class<? extends Day> dayCls) -> {
                         days.add(dayCls);
-                        log.info("loaded: {}", fqName);
+                        String.format(String.format("loaded: %s", fqName));
                     }, () -> {
                         log.error("Failed to load day: {}", fqName);
                         // FAIL: couldn't load day
