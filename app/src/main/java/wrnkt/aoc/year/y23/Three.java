@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
-import wrnkt.aoc.util.Day;
+import aoc.framework.Day;
 
 class Point {
     private int X;

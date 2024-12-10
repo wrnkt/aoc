@@ -1,4 +1,4 @@
-package wrnkt.aoc;
+package aoc.framework;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -13,13 +13,12 @@ import java.util.stream.IntStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import wrnkt.aoc.output.ConsoleOutput;
-import wrnkt.aoc.output.DayOutput;
-import wrnkt.aoc.output.FileOutput;
-import wrnkt.aoc.output.LoggerOutput;
-import wrnkt.aoc.util.Day;
-import wrnkt.aoc.util.Formatter;
-import wrnkt.aoc.util.Numbers;
+import aoc.framework.output.ConsoleOutput;
+import aoc.framework.output.DayOutput;
+import aoc.framework.output.LoggerOutput;
+import aoc.framework.output.FileOutput;
+import aoc.framework.util.Numbers;
+import aoc.framework.util.Formatter;
 
 public class AutoChallengeRunner {
     public static final Logger log = LoggerFactory.getLogger(AutoChallengeRunner.class);

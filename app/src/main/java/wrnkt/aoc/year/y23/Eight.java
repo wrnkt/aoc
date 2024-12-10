@@ -9,8 +9,8 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import wrnkt.aoc.util.Day;
-import wrnkt.aoc.util.Pair;
+import aoc.framework.Day;
+import aoc.framework.util.Pair;
 
 public class Eight extends Day {
 

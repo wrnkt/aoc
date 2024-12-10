@@ -1,4 +1,4 @@
-package wrnkt.aoc;
+package aoc.framework;
 
 import java.util.Map;
 import java.util.Arrays;

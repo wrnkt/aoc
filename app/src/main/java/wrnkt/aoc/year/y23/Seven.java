@@ -8,8 +8,8 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import wrnkt.aoc.util.Day;
-import wrnkt.aoc.util.Formatter;
+import aoc.framework.Day;
+import aoc.framework.util.Formatter;
 
 public class Seven extends Day {
 

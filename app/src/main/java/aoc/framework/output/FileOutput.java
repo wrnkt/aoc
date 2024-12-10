@@ -1,4 +1,4 @@
-package wrnkt.aoc.output;
+package aoc.framework.output;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -12,7 +12,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import wrnkt.aoc.util.Day;
+import aoc.framework.Day;
 
 public class FileOutput extends DayOutput {
     public static final Logger log = LoggerFactory.getLogger(FileOutput.class);

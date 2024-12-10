@@ -1,4 +1,4 @@
-package wrnkt.aoc.util;
+package aoc.framework.util;
 
 public class Pair<A, B> {
     private final A first;

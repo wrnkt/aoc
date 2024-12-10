@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import wrnkt.aoc.util.Day;
+import aoc.framework.Day;
 
 public class Six extends Day {
 

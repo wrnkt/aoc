@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-import wrnkt.aoc.util.Day;
-import wrnkt.aoc.util.Pair;
+import aoc.framework.Day;
+import aoc.framework.util.Pair;
 
 public class One extends Day {
 

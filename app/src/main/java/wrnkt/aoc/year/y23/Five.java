@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import wrnkt.aoc.util.Day;
+import aoc.framework.Day;
 
 public class Five extends Day {
 

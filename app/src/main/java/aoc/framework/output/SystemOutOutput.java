@@ -1,6 +1,6 @@
-package wrnkt.aoc.output;
+package aoc.framework.output;
 
-import wrnkt.aoc.util.Day;
+import aoc.framework.Day;
 
 public class SystemOutOutput extends DayOutput {
     

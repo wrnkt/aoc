@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import wrnkt.aoc.util.Day;
+import aoc.framework.Day;
 
 public class One extends Day {
 

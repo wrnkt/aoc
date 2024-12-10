@@ -33,7 +33,7 @@ java {
 }
 
 application {
-    mainClass = "wrnkt.aoc.Main"
+    mainClass = "aoc.Main"
 }
 
 /*

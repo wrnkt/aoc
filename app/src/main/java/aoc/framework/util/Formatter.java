@@ -1,4 +1,4 @@
-package wrnkt.aoc.util;
+package aoc.framework.util;
 
 import java.util.Map;
 import java.util.Set;
