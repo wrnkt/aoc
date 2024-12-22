@@ -20,6 +20,7 @@ dependencies {
     implementation(libs.guava)
     testImplementation(libs.junit.jupiter)
 
+    implementation(libs.commons.lang3)
 
     testRuntimeOnly(libs.junit.platform.launcher)
 }
