@@ -5,9 +5,8 @@ import org.gradle.api.tasks.testing.TestResult
 import org.gradle.kotlin.dsl.KotlinClosure2
 
 plugins {
-    java
-    //scala
-    application
+    `java`
+    `application`
 }
 
 repositories {
@@ -21,7 +20,6 @@ dependencies {
     implementation(libs.guava)
     testImplementation(libs.junit.jupiter)
 
-    implementation(libs.scala.library)
 
     testRuntimeOnly(libs.junit.platform.launcher)
 }
@@ -36,26 +34,6 @@ application {
     mainClass = "aoc.Main"
 }
 
-/*
-sourceSets {
-    main {
-        scala {
-            srcDir("src/main/scala")  // Scala source directory
-        }
-        java {
-            srcDir("src/main/java")   // Java source directory (if you mix Java and Scala)
-        }
-    }
-    test {
-        scala {
-            srcDir("src/test/scala")  // Scala test directory
-        }
-        java {
-            srcDir("src/test/java")   // Java test directory (if you have Java tests)
-        }
-    }
-}
-*/
 
 /* ---------------- */
 /* ----- TEST ----- */
