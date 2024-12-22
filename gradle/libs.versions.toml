@@ -5,25 +5,38 @@
 guava = "33.2.1-jre"
 junit-jupiter = "5.10.3"
 junit-platform-launcher = "1.11.2"
+junit-jupiter-engine = "5.10.3"
+junit = "4.13.2"
+junit-v4-v13-v2-v13 = "3.2.2.0"
 
 slf4j-api = "2.0.16"
 logback-classic = "1.5.11"
 
-scala-library = "3.5.2"
 commons-lang3 = "3.17.0"
+
+scala-library = "3.5.2"
+scala-xml-v2-v13 = "1.2.0"
+scalatest-v2-v13 = "3.2.19"
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter-engine" }
+junit = { module = "junit:junit", version.ref = "junit" }
+junit-v4-v13-v2-v13 = { module = "org.scalatestplus:junit-4-13_2.13", version.ref = "junit-v4-v13-v2-v13" }
 
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j-api" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback-classic" }
 
-scala-library = { module = "org.scala-lang:scala3-library_3", version.ref = "scala-library" }
 commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
+
+scala-library = { module = "org.scala-lang:scala3-library_3", version.ref = "scala-library" }
+scala-xml-v2-v13 = { module = "org.scala-lang.modules:scala-xml_2.13", version.ref = "scala-xml-v2-v13" }
+scalatest-v2-v13 = { module = "org.scalatest:scalatest_2.13", version.ref = "scalatest-v2-v13" }
 
 
 [plugins]
 java = { id = "java" }
 scala = { id = "scala" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version = "2.0.0" }
