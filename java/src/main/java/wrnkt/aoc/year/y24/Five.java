@@ -137,5 +137,5 @@ public class Five extends Day {
         record Entry(int before, int after) {}
 
     }
-
+    
 }
