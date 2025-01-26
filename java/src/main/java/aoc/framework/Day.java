@@ -70,13 +70,18 @@ public abstract class Day implements Runnable {
         return Optional.of(path);
     }
 
-    public Optional<BufferedReader> getInputReader() {
-        var foundPath = inputFileName();
+    public Optional<InputStream> getInputStream() {
+        Optional<String> foundPath = inputFileName();
         if (foundPath.isEmpty()) return Optional.empty();
 
+        InputStream is = getClass().getClassLoader().getResourceAsStream(foundPath.get());
+        return Optional.ofNullable(is);
+    }
+
+    public Optional<BufferedReader> getInputReader() {
         try {
-            InputStream is = getClass().getClassLoader().getResourceAsStream(foundPath.get());
-            return Optional.of(new BufferedReader(new InputStreamReader(is)));
+            Optional<InputStream> is = getInputStream();
+            return Optional.of(new BufferedReader(new InputStreamReader(is.get())));
         } catch (Exception e) {
             log.error("Could not get reader for input.");
         }
