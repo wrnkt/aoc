@@ -2,6 +2,9 @@
 
 ## How To Use
 
+To run Java solutions after writing a solution class and specifying it in
+`application.properties`, run `./gradlew :java:run`
+
 ### Configuration
 
 Configure the package scanned for solutions in `application.properties`. Set the
