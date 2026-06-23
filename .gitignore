@@ -1,5 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/c++,java,kotlin,rust,scala,swift,gradle,eclipse,intellij+all,xcode
 # Edit at https://www.toptal.com/developers/gitignore?templates=c++,java,kotlin,rust,scala,swift,gradle,eclipse,intellij+all,xcode
+#
+# kls_database.db
 
 ### C++ ###
 # Prerequisites
