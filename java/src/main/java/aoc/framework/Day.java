@@ -83,7 +83,7 @@ public abstract class Day implements Runnable {
             Optional<InputStream> is = getInputStream();
             return Optional.of(new BufferedReader(new InputStreamReader(is.get())));
         } catch (Exception e) {
-            log.error("Could not get reader for input.");
+            log.error("Could not get reader for input.", e);
         }
         return Optional.empty();
     }

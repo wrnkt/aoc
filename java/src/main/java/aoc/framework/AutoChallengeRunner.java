@@ -36,8 +36,16 @@ public class AutoChallengeRunner {
         setYearPackage(yearPackage);
         setOutput(outputType);
         setPuzzleList(puzzleList);
-        // System.out.println(getInfo());
+
+        log.info(
+            "Initialzed AutoChallengeRunner[yearPackage={}, outputType={}]",
+            getYearPackage(), 
+            getOutput()
+        );
+        log.info("Loaded {} total puzzle lists", getPuzzleList().size());
     }
+
+    protected void logDescription() {}
 
     public AutoChallengeRunner(OutputType outputType, Map<Integer,Set<Integer>> puzzleList) {
         this(DEFAULT_YEAR_PACKAGE, outputType, puzzleList);
